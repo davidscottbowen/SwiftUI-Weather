@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct ContentView: View {
+    
+    let locationFetcher = LocationFetcher()
+    
     var body: some View {
         ZStack {
             LinearGradient(gradient: Gradient(colors: [.blue, Color("lightBlue")]),            startPoint:.topLeading,
@@ -58,16 +61,37 @@ struct ContentView: View {
                     
                 Spacer()
                 
-                Button {
-                    print("tapped")
-                } label: {
-                    Text("Change Day Time")
-                        .frame(width: 280, height: 50)
-                        .background(Color.white)
-                        .font(.system(size: 20, weight: .bold, design: .default))
-                        .cornerRadius(10)
+                Button("Location") {
+                    self.locationFetcher.start()
+                    if let location = self.locationFetcher.lastKnownLocation {
+                        print("Your location is \(location)")
+                    } else {
+                        print("Your location is unknown")
+                    }
                 }
                 
+//                Button("Start Tracking Location") {
+//                    self.locationFetcher.start()
+//                }
+//
+//                Button("Read Location") {
+//                    if let location = self.locationFetcher.lastKnownLocation {
+//                        print("Your location is \(location)")
+//                    } else {
+//                        print("Your location is unknown")
+//                    }
+//                }
+//                Button {
+//                    print("Latitude: \(locationViewModel.userLatitude)")
+//                    print("Longitude: \(locationViewModel.userLongitude)")
+//                } label: {
+//                    Text("Get Longitude and Latitude")
+//                        .frame(width: 280, height: 50)
+//                        .background(Color.white)
+//                        .font(.system(size: 20, weight: .bold, design: .default))
+//                        .cornerRadius(10)
+//                }
+//
                 
                         
                 
